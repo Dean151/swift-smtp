@@ -1,0 +1,23 @@
+name: Linux CI
+
+on:
+  push:
+    paths-ignore:
+      - "README.md"
+      - "Sources/**/*.docc/**"
+  pull_request:
+    paths-ignore:
+      - "README.md"
+      - "Sources/**/*.docc/**"
+
+jobs:
+  swift-tests:
+    name: Swift Tests (Swift 6.4)
+    runs-on: ubuntu-24.04
+    container:
+      image: swift:6.4-noble
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Run tests
+        run: swift test
